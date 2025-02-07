@@ -20,7 +20,10 @@ function gameStatus(div) {
         gameValues[index] = 'X';
         let win = checkWin(gameValues, winConditions);
         if (win) {
-            document.getElementById('player-move').innerHTML = 'Player 1 wins!';
+            playerTurn.innerHTML = 'Player 1 wins!';
+            document.getElementById('restart').removeAttribute('hidden');
+        } else if (index === 8){
+            playerTurn.innerHTML = 'It`s a draw!';
             document.getElementById('restart').removeAttribute('hidden');
         } else {
             playerTurn.innerHTML = 'Player move: player 2';
@@ -31,7 +34,10 @@ function gameStatus(div) {
         gameValues[index] = 'O';
         let win = checkWin(gameValues, winConditions);
         if (win) {
-            document.getElementById('player-move').innerHTML = 'Player 2 wins!';
+            playerTurn.innerHTML = 'Player 2 wins!';
+            document.getElementById('restart').removeAttribute('hidden');
+        } else if (index === 8) {
+            playerTurn.innerHTML = 'It`s a draw!';
             document.getElementById('restart').removeAttribute('hidden');
         } else {
             playerTurn.innerHTML = 'Player move: player 1';
