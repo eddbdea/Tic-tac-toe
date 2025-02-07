@@ -12,19 +12,20 @@
     <div class="container text-center">
         <h2>TIC-TAC-TOE GAME!</h2>
         <div class="row row-cols-3">
-          <div class="col" style="border-top-style: solid; border-left-style: solid; height: 25px;" onclick="gameStatus(this)"></div>
-          <div class="col" style="border-top-style: solid; border-left-style: solid; height: 25px;" onclick="gameStatus(this)"></div>
-          <div class="col" style="border-top-style: solid; border-left-style: solid; border-right-style: solid; height: 25px;" onclick="gameStatus(this)"></div>
-          <div class="col" style="border-top-style: solid; border-left-style: solid; height: 25px;" onclick="gameStatus(this)"></div>
-          <div class="col" style="border-top-style: solid; border-left-style: solid; height: 25px;" onclick="gameStatus(this)"></div>
-          <div class="col" style="border-top-style: solid; border-left-style: solid; border-right-style: solid; height: 25px;" onclick="gameStatus(this)"></div>
-          <div class="col" style="border-top-style: solid; border-left-style: solid; height: 25px; border-bottom-style: solid;" onclick="gameStatus(this)"></div>
-          <div class="col" style="border-top-style: solid; border-left-style: solid; height: 25px; border-bottom-style: solid;" onclick="gameStatus(this)"></div>
-          <div class="col" style="border-top-style: solid; border-left-style: solid; height: 25px; border-right-style: solid; border-bottom-style: solid;" onclick="gameStatus(this)"></div>
+          <div class="col" id="box0" style="border-top-style: solid; border-left-style: solid; height: 25px;" onclick="gameStatus(this)"></div>
+          <div class="col" id="box1" style="border-top-style: solid; border-left-style: solid; height: 25px;" onclick="gameStatus(this)"></div>
+          <div class="col" id="box2" style="border-top-style: solid; border-left-style: solid; border-right-style: solid; height: 25px;" onclick="gameStatus(this)"></div>
+          <div class="col" id="box3" style="border-top-style: solid; border-left-style: solid; height: 25px;" onclick="gameStatus(this)"></div>
+          <div class="col" id="box4" style="border-top-style: solid; border-left-style: solid; height: 25px;" onclick="gameStatus(this)"></div>
+          <div class="col" id="box5" style="border-top-style: solid; border-left-style: solid; border-right-style: solid; height: 25px;" onclick="gameStatus(this)"></div>
+          <div class="col" id="box6" style="border-top-style: solid; border-left-style: solid; height: 25px; border-bottom-style: solid;" onclick="gameStatus(this)"></div>
+          <div class="col" id="box7" style="border-top-style: solid; border-left-style: solid; height: 25px; border-bottom-style: solid;" onclick="gameStatus(this)"></div>
+          <div class="col" id="box8" style="border-top-style: solid; border-left-style: solid; height: 25px; border-right-style: solid; border-bottom-style: solid;" onclick="gameStatus(this)"></div>
         </div>
         <div id="player-status"></div>
         <br>
         <h2 id="player-move">Player move: player 1</h2>
+        <button id="restart" type="button" class="btn btn-danger" onclick="restartGame()" hidden>Play again!</button>
         <br>
         <h3>Player 1 - X</h3>
         <h3>Player 2 - O</h3>
