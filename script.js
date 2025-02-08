@@ -1,5 +1,7 @@
+const MAX_ELEMENTS = 8;
+const MAX_LENGTH = 9;
 let playerStatus = 1;
-let gameValues = Array(9).fill(null);
+let gameValues = Array(MAX_LENGTH).fill(null);
 let winConditions = [
     [0, 1, 2],
     [3, 4, 5],
@@ -13,36 +15,29 @@ let winConditions = [
 
 function gameStatus(div) {
     const currentElement = div.innerHTML;
-    let playerTurn = document.getElementById('player-move');
-    let index = parseInt(div.id.replace('box', '')); 
+    const playerTurn = document.getElementById('player-move');
+    const index = parseInt(div.id.replace('box', '')); 
     if (currentElement === '' && playerStatus === 1) {
         div.innerHTML = 'X';
         gameValues[index] = 'X';
-        let win = checkWin(gameValues, winConditions);
-        if (win) {
-            playerTurn.innerHTML = 'Player 1 wins!';
-            document.getElementById('restart').removeAttribute('hidden');
-        } else if (index === 8){
-            playerTurn.innerHTML = 'It`s a draw!';
-            document.getElementById('restart').removeAttribute('hidden');
-        } else {
-            playerTurn.innerHTML = 'Player move: player 2';
-            playerStatus = 2;
-        }
     } else if (currentElement === '' && playerStatus === 2) {
         div.innerHTML = 'O';
         gameValues[index] = 'O';
-        let win = checkWin(gameValues, winConditions);
-        if (win) {
-            playerTurn.innerHTML = 'Player 2 wins!';
-            document.getElementById('restart').removeAttribute('hidden');
-        } else if (index === 8) {
-            playerTurn.innerHTML = 'It`s a draw!';
-            document.getElementById('restart').removeAttribute('hidden');
-        } else {
-            playerTurn.innerHTML = 'Player move: player 1';
+    }
+    let win = checkWin(gameValues, winConditions);
+    if (win) {
+        playerTurn.innerHTML = 'Player ' + playerStatus + ' wins!';
+        document.getElementById('restart').removeAttribute('hidden');
+    } else if (index === MAX_ELEMENTS) {
+        playerTurn.innerHTML = 'It`s a draw!';
+        document.getElementById('restart').removeAttribute('hidden');
+    } else {
+        if (playerStatus === 1) {
+            playerStatus = 2;
+        } else if (playerStatus === 2) {
             playerStatus = 1;
         }
+        playerTurn.innerHTML = 'Player move: player ' + playerStatus;
     }
 }
 
