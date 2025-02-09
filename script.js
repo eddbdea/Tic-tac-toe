@@ -17,28 +17,9 @@ function gameStatus(div) {
     const currentElement = div.innerHTML;
     const playerTurn = document.getElementById('player-move');
     const index = parseInt(div.id.replace('box', '')); 
-    if (currentElement === '' && playerStatus === 1) {
-        div.innerHTML = 'X';
-        gameValues[index] = 'X';
-    } else if (currentElement === '' && playerStatus === 2) {
-        div.innerHTML = 'O';
-        gameValues[index] = 'O';
-    }
+    addGameSign(index, currentElement, div);
     let win = checkWin(gameValues, winConditions);
-    if (win) {
-        playerTurn.innerHTML = 'Player ' + playerStatus + ' wins!';
-        document.getElementById('restart').removeAttribute('hidden');
-    } else if (index === MAX_ELEMENTS) {
-        playerTurn.innerHTML = 'It`s a draw!';
-        document.getElementById('restart').removeAttribute('hidden');
-    } else {
-        if (playerStatus === 1) {
-            playerStatus = 2;
-        } else if (playerStatus === 2) {
-            playerStatus = 1;
-        }
-        playerTurn.innerHTML = 'Player move: player ' + playerStatus;
-    }
+    gameWinStatus(win, playerTurn, index);
 }
 
 function checkWin(gameValues, winConditions) {
@@ -48,6 +29,33 @@ function checkWin(gameValues, winConditions) {
         let c = winner[2];
         return gameValues[a] && gameValues[a] === gameValues[b] && gameValues[a] === gameValues[c];
     });
+}
+
+function addGameSign(index, currentElement, boxElement) {
+    if (currentElement === '' && playerStatus === 1) {
+        boxElement.innerHTML = 'X';
+        gameValues[index] = 'X';
+    } else if (currentElement === '' && playerStatus === 2) {
+        boxElement.innerHTML = 'O';
+        gameValues[index] = 'O';
+    }
+}
+
+function gameWinStatus(win, player, index) {
+    if (win) {
+        player.innerHTML = 'Player ' + playerStatus + ' wins!';
+        document.getElementById('restart').removeAttribute('hidden');
+    } else if (index === MAX_ELEMENTS) {
+        player.innerHTML = 'It`s a draw!';
+        document.getElementById('restart').removeAttribute('hidden');
+    } else {
+        if (playerStatus === 1) {
+            playerStatus = 2;
+        } else if (playerStatus === 2) {
+            playerStatus = 1;
+        }
+        player.innerHTML = 'Player move: player ' + playerStatus;
+    }
 }
 
 function restartGame() {
