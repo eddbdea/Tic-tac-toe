@@ -1,0 +1,7 @@
+.board-style {
+    border-top-style: solid;
+    border-bottom-style: solid;
+    border-left-style: solid;
+    border-right-style: solid;
+    height: 25px;
+}
