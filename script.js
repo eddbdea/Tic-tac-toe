@@ -2,17 +2,34 @@ const MAX_ELEMENTS = 8;
 const MAX_LENGTH = 9;
 let curentPlayer = 1;
 let emptySpotsLeft = MAX_LENGTH;
-const gameValues = Array(MAX_LENGTH).fill(null);
-const winConditions = [
-    [0, 1, 2],
-    [3, 4, 5],
-    [6, 7, 8],
-    [0, 3, 6],
-    [1, 4, 7],
-    [2, 5, 8],
-    [0, 4, 8],
-    [2, 4, 6]
-];
+const gameValues = [];
+const winConditions = [];
+let horizontalWinCondition = 0;
+let verticalWinCondition = 0;
+let diagonalWinCondition = 0;
+
+function createWinConditionsArray() {
+    for (let i = 0; i < MAX_ELEMENTS; ++i) {
+        if (i <= 2) {
+            winConditions[i] = [horizontalWinCondition, ++horizontalWinCondition, ++horizontalWinCondition];
+            ++horizontalWinCondition;
+        }
+        if (i > 2 && i <= MAX_ELEMENTS - 3) {
+            winConditions[i] = [verticalWinCondition, verticalWinCondition + 3, (verticalWinCondition + 3) + 3];
+            ++verticalWinCondition;
+        }
+        if (i === MAX_ELEMENTS - 2) {
+            winConditions[i] = [diagonalWinCondition, diagonalWinCondition + 4, (diagonalWinCondition + 4) + 4];
+        }
+        if (i === MAX_ELEMENTS - 1) {
+            diagonalWinCondition = 2;
+            winConditions[i] = [diagonalWinCondition, diagonalWinCondition + 2, (diagonalWinCondition + 2) + 2]
+        }
+        console.log(winConditions[i]);
+    }
+}
+
+createWinConditionsArray();
 
 function createBoardGame() {
     for (let i = 0; i < MAX_LENGTH; ++i) {
@@ -22,7 +39,7 @@ function createBoardGame() {
         divElem.id = 'box' + i;
         divElem.onclick = () => {
             gameStatus(divElem);
-        }
+        };
     }
 }
 
@@ -68,6 +85,7 @@ function gameWinStatus(win, player) {
         emptySpotsLeft = MAX_LENGTH;
         return player.innerHTML = 'It`s a draw!';
     }
+    
     if (curentPlayer === 1) {
         curentPlayer = 2;
     } else {
