@@ -59,8 +59,9 @@ function checkWin(gameValues, winConditions) {
         const a = winner[0];
         const b = winner[1];
         const c = winner[2];
-        return gameValues[a] && gameValues[a] === gameValues[b] 
-        && gameValues[a] === gameValues[c];
+        return gameValues[a] && 
+               gameValues[a] === gameValues[b] && 
+               gameValues[a] === gameValues[c];
     });
 }
 
