@@ -4,28 +4,27 @@ let curentPlayer = 1;
 let emptySpotsLeft = MAX_LENGTH;
 const gameValues = [];
 const winConditions = [];
-let horizontalWinCondition = 0;
-let verticalWinCondition = 0;
-let diagonalWinCondition = 0;
+const verticalIncrement = 3;
+const diagonalIncrement = 2;
+let winIndex = 0;
+
 
 function createWinConditionsArray() {
-    for (let i = 0; i < MAX_ELEMENTS; ++i) {
-        if (i <= 2) {
-            winConditions[i] = [horizontalWinCondition, ++horizontalWinCondition, ++horizontalWinCondition];
-            ++horizontalWinCondition;
+    for (let horizontal = 0; horizontal <= MAX_ELEMENTS - 2; horizontal+=3) {
+        winConditions[winIndex] = [horizontal, horizontal + 1, horizontal + 2];
+        ++winIndex;
+    }
+    for (let vertical = 0; vertical <= 2; ++vertical) {
+        winConditions[winIndex] = [vertical, vertical + verticalIncrement, vertical + 2*verticalIncrement];
+        ++winIndex;
+    }
+    for (let diagonal = 0; diagonal <= 2; diagonal+=2) {
+        if (diagonal === 0) {
+            winConditions[winIndex] = [diagonal, diagonal + 2*diagonalIncrement, diagonal + 4*diagonalIncrement];
+            ++winIndex;
+        } else {
+            winConditions[winIndex] = [diagonal, diagonal + diagonalIncrement, diagonal + 2*diagonalIncrement];
         }
-        if (i > 2 && i <= MAX_ELEMENTS - 3) {
-            winConditions[i] = [verticalWinCondition, verticalWinCondition + 3, (verticalWinCondition + 3) + 3];
-            ++verticalWinCondition;
-        }
-        if (i === MAX_ELEMENTS - 2) {
-            winConditions[i] = [diagonalWinCondition, diagonalWinCondition + 4, (diagonalWinCondition + 4) + 4];
-        }
-        if (i === MAX_ELEMENTS - 1) {
-            diagonalWinCondition = 2;
-            winConditions[i] = [diagonalWinCondition, diagonalWinCondition + 2, (diagonalWinCondition + 2) + 2]
-        }
-        console.log(winConditions[i]);
     }
 }
 
