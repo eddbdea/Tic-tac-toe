@@ -6,26 +6,23 @@ const gameValues = [];
 const winConditions = [];
 const verticalIncrement = 3;
 const diagonalIncrement = 2;
-let winIndex = 0;
+winConditions.length = MAX_ELEMENTS;
+let diagonal = 0;
 
 
 function createWinConditionsArray() {
-    for (let horizontal = 0; horizontal <= MAX_ELEMENTS - 2; horizontal+=3) {
-        winConditions[winIndex] = [horizontal, horizontal + 1, horizontal + 2];
-        ++winIndex;
+    for (let horizontal = 0; horizontal <= MAX_ELEMENTS - 2; horizontal += 3) {
+        winConditions.push([horizontal, horizontal + 1, horizontal + 2]);
     }
     for (let vertical = 0; vertical <= 2; ++vertical) {
-        winConditions[winIndex] = [vertical, vertical + verticalIncrement, vertical + 2*verticalIncrement];
-        ++winIndex;
+        winConditions.push([vertical, vertical + verticalIncrement, 
+                            vertical + 2 * verticalIncrement]);
     }
-    for (let diagonal = 0; diagonal <= 2; diagonal+=2) {
-        if (diagonal === 0) {
-            winConditions[winIndex] = [diagonal, diagonal + 2*diagonalIncrement, diagonal + 4*diagonalIncrement];
-            ++winIndex;
-        } else {
-            winConditions[winIndex] = [diagonal, diagonal + diagonalIncrement, diagonal + 2*diagonalIncrement];
-        }
-    }
+    winConditions.push([diagonal, diagonal + 2 * diagonalIncrement, 
+                        diagonal + 4 * diagonalIncrement]);
+    diagonal += 2;
+    winConditions.push([diagonal, diagonal + diagonalIncrement, 
+                        diagonal + 2 * diagonalIncrement]);
 }
 
 createWinConditionsArray();
