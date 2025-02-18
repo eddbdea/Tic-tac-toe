@@ -7,8 +7,6 @@ const winConditions = [];
 const verticalIncrement = 3;
 const diagonalIncrement = 2;
 winConditions.length = MAX_ELEMENTS;
-let diagonal = 0;
-
 
 function createWinConditionsArray() {
     for (let horizontal = 0; horizontal <= MAX_ELEMENTS - 2; horizontal += 3) {
@@ -18,6 +16,7 @@ function createWinConditionsArray() {
         winConditions.push([vertical, vertical + verticalIncrement, 
                             vertical + 2 * verticalIncrement]);
     }
+    let diagonal = 0;
     winConditions.push([diagonal, diagonal + 2 * diagonalIncrement, 
                         diagonal + 4 * diagonalIncrement]);
     diagonal += 2;
@@ -82,7 +81,6 @@ function gameWinStatus(win, player) {
         emptySpotsLeft = MAX_LENGTH;
         return player.innerHTML = 'It`s a draw!';
     }
-    
     if (curentPlayer === 1) {
         curentPlayer = 2;
     } else {
